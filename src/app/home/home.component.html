@@ -1,0 +1,17 @@
+
+<button (click)="getDataObs()" > Click to get youtube data!!</button>
+
+
+<ul>
+  <li *ngFor="let item of data">
+    {{ item.id.videoId }}
+    <br>
+
+    <a routerLink="show-videos/{{item.id.videoId}}">Press to play video!!</a>
+    <app-show-videos [thumnailInput] = "item.snippet.thumbnails" [titleInput] = "item.snippet.title" > </app-show-videos>
+  </li>
+
+
+</ul>
+
+

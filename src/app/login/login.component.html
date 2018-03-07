@@ -1,0 +1,57 @@
+<form #loginForm="ngForm" (submit)="submitUser('home')">
+
+  <div class="form-group col-md-6">
+    <label for="email">Email:</label>
+
+    <input #email="ngModel" name="email" [(ngModel)]="user.email" type="email" id="email"
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" minlength="4" required/>
+
+  </div>
+
+  <div style="color: red" *ngIf="email.invalid && (email.dirty || email.touched)"
+       class="alert alert-danger">
+
+    <div style="color: red" *ngIf="email.errors.required">
+      Email is required.
+    </div>
+    <div style="color: red" *ngIf="email.errors.minlength">
+      Email must be at least 4 characters long.
+    </div>
+
+    <div style="color: red" *ngIf="email.errors.pattern">
+      Pattern is not right.
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="form-group col-md-6">
+    <label for="password">Password:</label>
+    <input #password="ngModel" required name="password" [(ngModel)]="user.password" type="password" id="password"
+           minlength="6"/>
+  </div>
+
+
+  <div style="color: red" *ngIf="password.invalid && (password.dirty || password.touched)"
+       class="alert alert-danger">
+
+    <div style="color: red" *ngIf="password.errors.required">
+      Password is required.
+    </div>
+    <div style="color: red" *ngIf="password.errors.minlength">
+      Password must be at least 6 characters long.
+    </div>
+
+
+  </div>
+
+  <br>
+
+  <br>
+
+  <button [disabled]="!loginForm.valid" type="submit">Login</button>
+  <!--<button [disabled]="loginForm.valid" type="submit">Cancel</button>-->
+</form>
+
+<router-outlet></router-outlet>
